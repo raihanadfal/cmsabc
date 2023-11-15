@@ -66,7 +66,7 @@
   <div class="container ">
     <div class="row">
       <div class="col">
-        <form action="{{ route('login.authenticate') }}" class="form-signin card card-body">
+        <form action="{{ route('login.authenticate') }}" method="POST" class="form-signin card card-body">
           @csrf
           <h4 class="text-center mb-4 mt-1">ABC Baking Centre</h4>
           <label for="inputEmail" class="sr-only">Email address</label>
@@ -80,9 +80,9 @@
           <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password">
           <label for="password">Password</label>
           @error('password')
-          <div class="invalid-feedback">
-          {{ $message }}
-          </div>
+            <div class="invalid-feedback">
+            {{ $message }}
+            </div>
           @enderror
           <div class="checkbox mb-2 text-left">
             <label>

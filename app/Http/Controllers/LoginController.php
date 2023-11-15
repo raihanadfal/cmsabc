@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; // tambahkan baris ini
 
 class LoginController extends Controller
 {
@@ -35,7 +36,7 @@ class LoginController extends Controller
 
     public function store(Request $request)
     {
-        # code...
+        // # code...
     }
 
     public function logout(Request $request)
