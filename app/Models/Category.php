@@ -18,4 +18,15 @@ class Category extends BaseModel
     public function post() {
         return $this->hasMany(Post::class, 'category_id', 'id');
     }
+
+    public static function getDropdown()
+    {
+        $subDistrict = self::select('id', 'name');
+
+        return $subDistrict->get()
+            ->keyBy('id')
+            ->transform(function ($model) {
+                return $model->name;
+            })->toArray();
+    }
 }
