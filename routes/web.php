@@ -1,10 +1,11 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DashboardPostController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\DashboardCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,5 +30,23 @@ Route::post('/login', [LoginController::class, 'authenticate'])->name('login.aut
 Route::post('/logout', [LoginController::class, 'logout'])->name('login.logout');
 
 // dashboard
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
-Route::resource('dashboard/posts', DashboardPostController::class);
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::prefix('dashboard')->group(function () {
+        Route::resource('/categories', DashboardCategoryController::class);
+        Route::resource('/posts', DashboardPostController::class);
+    });
+
+});
+
+
+// Route::get('/dashboard', function () {
+//     return view('dashboard.index');
+// })->name('dashboard');
+// Route::resource('dashboard/posts', DashboardPostController::class);
+
+// Route::get('/', function () {
+//     return view('home');
+// });

@@ -3,14 +3,12 @@
 namespace App\Http\Controllers;
 
 use Exception;
-use App\Models\Post;
 use App\Models\Category;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-class DashboardPostController extends Controller
+class DashboardCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +17,9 @@ class DashboardPostController extends Controller
      */
     public function index()
     {   
-        $models = Post::all();
+        $models = Category::all();
 
-        return view('dashboard.posts.index', compact('models'));
+        return view('dashboard.categories.index', compact('models'));
     }
 
     /**
@@ -31,9 +29,7 @@ class DashboardPostController extends Controller
      */
     public function create()
     {
-        $categories = Category::getDropdown();
-
-        return view('dashboard.posts.create', compact('categories'));
+        return view('dashboard.categories.create');
     }
 
     /**
@@ -46,22 +42,15 @@ class DashboardPostController extends Controller
     {
         DB::beginTransaction();
         try {
-            $post = new Post();
+            $post = new Category();
             $post->fill($request->all());
-            $post->slug = Str::slug($request->slug);
-            $image = $request->file('image');
-            if ($image) {
-                $imageName = rand().'.'.$image->extension();
-                $image->storeAs('public/'.Post::STORAGE_PATH, $imageName);
-                $post->image = $imageName;
-            }
-            $post->save();
+
             DB::commit();
 
-            return redirect(route('posts.index'))->with('success', 'Berhasil!');
+            return redirect(route('categories.index'))->with('success', 'Berhasil!');
         } catch (Exception $err) {
             DB::rollBack();
-            return redirect(route('posts.index'))->with('error', 'Gagal!');
+            return redirect(route('categories.index'))->with('error', 'Gagal!');
         }
     }
 
@@ -73,9 +62,9 @@ class DashboardPostController extends Controller
      */
     public function show($id)
     {
-        $model = Post::with(['categories'])->findOrFail($id);
+        $model = Category::findOrFail($id);
 
-        return view('dashboard.posts.show', compact('model'));
+        return view('dashboard.categories.show', compact('model'));
     }
 
     /**
@@ -86,9 +75,9 @@ class DashboardPostController extends Controller
      */
     public function edit($id)
     {
-        $model = Post::findOrFail($id);
+        $model = Category::findOrFail($id);
 
-        return view('dashboard.posts.edit', compact('model'));
+        return view('dashboard.categories.edit', compact('model'));
     }
 
     /**
@@ -102,15 +91,15 @@ class DashboardPostController extends Controller
     {
         DB::beginTransaction();
         try {
-            $model = Post::findOrFail($id);
+            $model = Category::findOrFail($id);
             $model->fill($request->all());
             $model->save();
             DB::commit();
 
-            return redirect()->route('posts.index')->with(['success' => 'Data Berhasil Diubah']);
+            return redirect()->route('categories.index')->with(['success' => 'Data Berhasil Diubah']);
         } catch (Exception $err) {
             DB::rollBack();
-            return redirect()->route('posts.index')->with(['error' => 'Data Gagal Diubah']);
+            return redirect()->route('categories.index')->with(['error' => 'Data Gagal Diubah']);
         }
     }
 
@@ -122,19 +111,18 @@ class DashboardPostController extends Controller
      */
     public function destroy($id)
     {
-        $model = Post::findOrFail($id);
+        $model = Category::findOrFail($id);
 
         DB::beginTransaction();
         try {
-            if ($model->image) Storage::delete('public/'. Post::STORAGE_PATH. $model->iamge);
             $model->delete();
 
             DB::commit();
         } catch (Exception $err) {
             DB::rollBack();
-            return redirect(route('posts.index'))->with('error', 'Gagal!');
+            return redirect(route('categories.index'))->with('error', 'Gagal!');
         }
 
-        return redirect()->route('posts.index')->with(['success' => 'Hapus Data Berhasil']);
+        return redirect()->route('categories.index')->with(['success' => 'Hapus Data Berhasil']);
     }
 }
