@@ -89,7 +89,7 @@
               <input type="checkbox" value="remember-me"> Remember me
             </label>
           </div>
-          <a href="{{ route('login') }}" class="btn btn-lg btn-primary btn-block"  type="submit">Login</a>
+          <button class="btn btn-lg btn-primary btn-block"  type="submit">Login</button>
           <p class="mt-3 text-center text-muted">&copy; 2023</p>
         </form>
       </div>
