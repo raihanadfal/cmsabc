@@ -66,18 +66,30 @@
   <div class="container ">
     <div class="row">
       <div class="col">
-        <form class="form-signin card card-body">
+        <form action="{{ route('login.authenticate') }}" class="form-signin card card-body">
+          @csrf
           <h4 class="text-center mb-4 mt-1">ABC Baking Centre</h4>
           <label for="inputEmail" class="sr-only">Email address</label>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-          <label for="inputPassword" class="sr-only">Password</label>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <input type="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" id="email" name="email" placeholder="name@example.com">
+          @error('email')
+            <div class="invalid-feedback">
+            {{ $message }}
+            </div>
+          @enderror
+
+          <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" placeholder="Password">
+          <label for="password">Password</label>
+          @error('password')
+          <div class="invalid-feedback">
+          {{ $message }}
+          </div>
+          @enderror
           <div class="checkbox mb-2 text-left">
             <label>
               <input type="checkbox" value="remember-me"> Remember me
             </label>
           </div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+          <a href="{{ route('login') }}" class="btn btn-lg btn-primary btn-block"  type="submit">Login</a>
           <p class="mt-3 text-center text-muted">&copy; 2023</p>
         </form>
       </div>

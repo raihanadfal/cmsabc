@@ -7,7 +7,7 @@
   <ul class="navbar-nav px-3">
     <li class="nav-item text-nowrap">
       {{-- <a class="nav-link" href="#">Log out</a> --}}
-      <form action="/logout" method="POST">
+      <form action="{{ url('logout') }}" method="POST">
         @csrf
         <button type="submit" class="nav-link px-3 bg-dark border-0"><i class="bi bi-box-arror-right"></i> Log out</button>
       </form>

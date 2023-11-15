@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardPostController;
+use App\Http\Controllers\LoginController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,14 +16,21 @@ use App\Http\Controllers\DashboardPostController;
 |
 */
 
-
 Route::get('/', function () {
     return view('landing-page.index');
 });
 
-Route::get('/login', function () {
-    return view('login.index');
-});
+Route::get('/', function () {
+    return view('welcome');
+})->middleware('auth');
+
+// Login
+Route::get('/login', [LoginController::class, 'login'])->name('login');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login.authenticate');
+
+// Route::get('/login', function () {
+//     return view('login.index');
+// });
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
