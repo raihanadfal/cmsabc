@@ -30,14 +30,4 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('login.logout')
 
 // dashboard
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
-
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard.index');
-// })->name('dashboard');
-// Route::resource('dashboard/posts', DashboardPostController::class);
-
-// Route::get('/', function () {
-//     return view('home');
-// });
+Route::resource('dashboard/posts', DashboardPostController::class);

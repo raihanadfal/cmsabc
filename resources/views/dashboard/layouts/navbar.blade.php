@@ -9,7 +9,7 @@
       {{-- <a class="nav-link" href="#">Log out</a> --}}
       <form action="{{ url('logout') }}" method="POST">
         @csrf
-        <button type="submit" class="nav-link px-3 bg-dark border-0"><i class="bi bi-box-arror-right"></i> Log out</button>
+        <button type="submit" class="nav-link px-3 bg-dark border-0 rounded"><i class="bi bi-box-arror-right"></i> Log out</button>
       </form>
     </li>
   </ul>
