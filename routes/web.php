@@ -16,7 +16,7 @@ use App\Http\Controllers\DashboardPostController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing-page.index');
 });
 
 Route::get('/login', function () {
