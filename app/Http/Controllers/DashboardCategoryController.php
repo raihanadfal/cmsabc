@@ -18,7 +18,6 @@ class DashboardCategoryController extends Controller
     public function index()
     {   
         $models = Category::all();
-
         return view('dashboard.categories.index', compact('models'));
     }
 
@@ -44,11 +43,12 @@ class DashboardCategoryController extends Controller
         try {
             $post = new Category();
             $post->fill($request->all());
-
+            $post->save();
             DB::commit();
 
             return redirect(route('categories.index'))->with('success', 'Berhasil!');
         } catch (Exception $err) {
+            dd($err->getMessage());
             DB::rollBack();
             return redirect(route('categories.index'))->with('error', 'Gagal!');
         }

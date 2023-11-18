@@ -15,7 +15,7 @@
   @endif
 
   <div class="table-responsive">
-    <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create new category</a>
+    <a href="/dashboard/categories/create" class="btn btn-primary mb-3">Create new category</a>
     <table class="table table-striped table-sm">
     <thead>
       <tr>

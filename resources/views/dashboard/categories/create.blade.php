@@ -5,7 +5,7 @@
 </div>
 
 <div class="col-lg-8">
-  <form method="post" action="{{ route('posts.store') }}">
+  <form method="post" action="{{ route('categories.store') }}">
     @csrf
   <div class="mb-3">
     <label for="code" class="form-label">Kode</label>
