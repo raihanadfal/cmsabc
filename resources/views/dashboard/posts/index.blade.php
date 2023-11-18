@@ -34,7 +34,7 @@
       <tr>
         <td>{{ $counter++ }}</td>
         <td>{{ $model->title }}</td>
-        <td>{{ $model->created_at }}</td>
+        <td>{{ $model->tanggal}}</td>
         <td>{{ $model->price }}</td>
         <td>
           <a href="{{ route('posts.show', $model->id) }}">

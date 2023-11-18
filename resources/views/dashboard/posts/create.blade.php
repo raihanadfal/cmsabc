@@ -18,25 +18,27 @@
       </select>
     </div>
     <div class="mb-3">
-      <label for="title" class="form-label">Title</label>
+      <label for="title" class="form-label">Judul</label>
       <input type="text" class="form-control" id="title" name="title">
     </div>
-    <div class="mb-3">
-      <label for="slug" class="form-label">Slug</label>
-      <input type="text" class="form-control" id="slug" name="slug">
+    <div class="form-group">
+        <label for="tanggal">Tanggal:</label>
+        <input type="date" class="form-control" id="tanggal" name="tanggal">
     </div>
     <div class="mb-3">
-      <label for="content" class="form-label">Content</label>
+      <label for="content" class="form-label">Konten</label>
       <input type="text" class="form-control" id="content" name="content">
     </div>
     <div class="mb-3">
-      <label for="price" class="form-label">Price</label>
+      <label for="price" class="form-label">Harga</label>
       <input type="number" class="form-control" id="price" name="price">
     </div>
     <div class="mb-3">
+      <label for="image" class="form-label">Gambar</label>
       <input type="file" name="image" class="form-control">
     </div>
     <button type="submit" class="btn btn-primary">Create post</button>
   </form>
 </div>
+
 @endsection

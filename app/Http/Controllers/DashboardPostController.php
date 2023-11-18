@@ -48,7 +48,9 @@ class DashboardPostController extends Controller
         try {
             $post = new Post();
             $post->fill($request->all());
-            $post->slug = Str::slug($request->slug);
+            $post->fill($request->except('tanggal')); // Exclude 'tanggal' from fillable fields
+            $post->tanggal = $request->input('tanggal');
+
             $image = $request->file('image');
             if ($image) {
                 $imageName = rand().'.'.$image->extension();

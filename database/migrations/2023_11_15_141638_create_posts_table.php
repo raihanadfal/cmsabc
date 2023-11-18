@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('category_id')->references('id')->on('categories')->onUpdate('cascade')->nullable();
             $table->string('title');
-            $table->text('slug');
             $table->text('content')->nullable();
+            $table->date('tanggal')->nullable();
             $table->string('image')->nullable();
             $table->float('price')->nullable()->default(0);
             $table->integer('actived')->default(1);

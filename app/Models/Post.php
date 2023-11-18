@@ -16,8 +16,8 @@ class Post extends BaseModel
     protected $fillable = [
         'category_id', 
         'title', 
-        'content',  
-        'slug', 
+        'content',
+        'tanggal', 
         'image', 
         'price'
     ];
